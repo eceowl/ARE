@@ -1,4 +1,4 @@
-# WeatherSample
+# Activity Recommendation Engine
 
 A simple "What should I do tonight?" recommendation engine based on the hourly forecast
 
