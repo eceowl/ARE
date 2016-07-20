@@ -5,9 +5,9 @@ A simple "What should I do tonight?" recommendation engine based on the hourly f
 ### Build Requirements
 
 * Register for following APIs
-  * DarkSkies Weather API
+  * Dark Sky Forecast API
     * (https://developer.forecast.io/)
-  * GuideBox Entertainment API
+  * GuideBox API
     * (https://api.guidebox.com/)
   * Eventbrite API
     * (http://developer.eventbrite.com/)
