@@ -13,3 +13,7 @@ def run(latitude, longitude):
                               NetflixRouletteService())
 
     return jsonify(recommender.get_recommendation(latitude, longitude).serialize())
+
+
+if __name__ == "__main__":
+    app.run()
