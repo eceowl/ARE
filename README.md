@@ -13,10 +13,11 @@ A simple "What should I do tonight?" recommendation engine based on the hourly f
     * (http://developer.eventbrite.com/)
 * Create credentials.py in /weather_sample directory as follows:
 
+```python
 class Credentials:
   api_keys = {
       "Eventbrite": "FILL_ME_IN",
       "GuideBox": "FILL_ME_IN",
       "DarkSkies": "FILL_ME_IN"
   }
-
+```
