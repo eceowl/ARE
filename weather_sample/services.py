@@ -1,0 +1,79 @@
+import requests
+from weather_sample.credentials import Credentials
+from datetime import timedelta, date, datetime
+
+
+class EventbriteService:
+    BASE_URL = "https://www.eventbriteapi.com/v3/"
+    O_AUTH = Credentials.api_keys['Eventbrite']
+
+    def __format_request_url__(self, resource):
+        return self.BASE_URL \
+               + "/".join([str(r) for r in resource])
+
+    def get_events_around(self, latitude, longitude):
+        resource = ["events", "search"]
+        params = {
+            "location.latitude": latitude,
+            "location.longitude": longitude,
+            "start_date.range_start": datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
+            "start_date.range_end": (date.today() + timedelta(days=1)).strftime("%Y-%m-%dT%H:%M:%S"),
+            "price": "free",
+            "include_unavailable_events": "false"
+        }
+
+        response = requests.get(
+            self.__format_request_url__(resource),
+            headers={
+                "Authorization": "Bearer " + self.O_AUTH
+            },
+            verify=True,
+            params=params
+        )
+
+        return response.json()
+
+
+class NetflixRouletteService:
+    BASE_URL = "https://api-public.guidebox.com/v1.43"
+    API_KEY = Credentials.api_keys['GuideBox']
+
+    def __format_request_url__(self, params):
+        return self.BASE_URL \
+               + "/US" \
+               + "/" + self.API_KEY + "/" \
+               + "/".join([str(p) for p in params])
+
+    def get_netflix_shows(self):
+        params = ["shows", "netflix", 20, 50]
+        url = self.__format_request_url__(params)
+
+        data = requests.get(url).json()
+        return data['results']
+
+    def get_show_information(self, show):
+        params = ["show", show['id']]
+        url = self.__format_request_url__(params)
+
+        data = requests.get(url).json()
+
+        return data
+
+
+class WeatherService:
+    DARK_SKIES_URL = "https://api.forecast.io/forecast"
+    API_KEY = Credentials.api_keys['DarkSkies']
+
+    def __format_request_url__(self, latitude, longitude):
+        return "{}/{}/{},{}".format(self.DARK_SKIES_URL,
+                                    self.API_KEY,
+                                    latitude,
+                                    longitude)
+
+    def get_current_temperature(self, latitude, longitude):
+        url = self.__format_request_url__(latitude, longitude)
+        response = requests.get(url)
+
+        data = response.json()
+
+        return data['currently']['apparentTemperature']
