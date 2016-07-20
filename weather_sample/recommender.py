@@ -1,5 +1,4 @@
 import random
-import pprint
 from weather_sample.resources import Recommendation
 
 
