@@ -1,20 +1,15 @@
 from weather_sample.services import WeatherService, NetflixRouletteService, EventbriteService
 from weather_sample.recommender import Recommender
 
+from flask import Flask, jsonify
 
-class Application:
-    def run(self):
-        LATITUDE = 39.5
-        LONGITUDE = -75.2
-
-        recommender = Recommender(WeatherService(),
-                                  EventbriteService(),
-                                  NetflixRouletteService())
-
-        recommender.get_recommendation(LATITUDE, LONGITUDE)
+app = Flask(__name__)
 
 
-if __name__ == "__main__":
-    app = Application()
+@app.route('/recommendation/<latitude>,<longitude>')
+def run(latitude, longitude):
+    recommender = Recommender(WeatherService(),
+                              EventbriteService(),
+                              NetflixRouletteService())
 
-    app.run()
+    return jsonify(**recommender.get_recommendation(latitude, longitude))

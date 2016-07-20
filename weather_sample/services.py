@@ -70,10 +70,17 @@ class WeatherService:
                                     latitude,
                                     longitude)
 
-    def get_current_temperature(self, latitude, longitude):
+    def get_current_weather(self, latitude, longitude):
         url = self.__format_request_url__(latitude, longitude)
         response = requests.get(url)
 
         data = response.json()
+        return data
 
+    def get_current_temperature(self, latitude, longitude):
+        data = self.get_current_weather(latitude, longitude)
         return data['currently']['apparentTemperature']
+
+    def get_hourly_weather(self, latitude, longitude):
+        data = self.get_current_weather(latitude, longitude)
+        return data['hourly']

@@ -1,4 +1,5 @@
 import random
+import pprint
 
 
 class Recommender:
@@ -7,19 +8,25 @@ class Recommender:
         self.eventbrite_service = eventbrite_service
         self.netflix_service = netflix_service
 
+    @staticmethod
+    def __is_stay_in_weather__(weather_by_hour):
+        return weather_by_hour['apparentTemperature'] < 30 or \
+               weather_by_hour['apparentTemperature'] > 100 or \
+               weather_by_hour['precipProbability'] > .7
+
     def get_recommendation(self, latitude, longitude):
-        current_temp = self.weather_service.get_current_temperature(latitude, longitude)
+        hourly_weather = self.weather_service.get_hourly_weather(latitude, longitude)
+        pp = pprint.PrettyPrinter(indent=4)
 
-        if current_temp < 60:
-            print("It's cold out, here's a show to watch on netflix")
-
+        pp.pprint(hourly_weather)
+        if any(self.__is_stay_in_weather__(hour) for hour in hourly_weather['data']):
             shows = self.netflix_service.get_netflix_shows()
-            # TODO Create actual recommendation algorithm
+            pp.pprint(shows)
+
+            # TODO actually create a recommendation algorithm
             show = random.choice(shows)
 
-            print(self.netflix_service.get_show_information(show))
-        else:
-            print("It's beautiful out, get outside and do something!")
-            print("Here are some free events in your area tonight!")
+            return self.netflix_service.get_show_information(show)
 
-            print(self.eventbrite_service.get_events_around(latitude, longitude))
+        else:
+            return self.eventbrite_service.get_events_around(latitude, longitude)
