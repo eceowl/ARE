@@ -11,6 +11,7 @@ class Recommender:
     @staticmethod
     def __is_stay_in_weather__(weather_by_hour):
         # Arbitrary number choices for now
+        # TODO make this a little more advanced
         return weather_by_hour['apparentTemperature'] < 30 or \
                weather_by_hour['apparentTemperature'] > 95 or \
                weather_by_hour['precipProbability'] > .7
@@ -22,7 +23,15 @@ class Recommender:
         show = random.choice(shows)
 
         info = self.netflix_service.get_show_information(show)
-        return Recommendation(info['title'], info['overview'], info['url'], "Netflix")
+
+        recommendation = Recommendation(
+            info['title'],
+            info['overview'],
+            info['url'],
+            "Netflix"
+        )
+
+        return recommendation
 
     def __get_eventbrite_recommendation__(self, latitude, longitude):
         events = self.eventbrite_service.get_events_around(latitude, longitude)
