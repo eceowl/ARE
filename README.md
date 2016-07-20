@@ -21,3 +21,8 @@ class Credentials:
       "DarkSkies": "FILL_ME_IN"
   }
 ```
+
+* Create a virtualenv and run ``pip install -r requirements.txt``
+* Set the FLASK_APP by running ``export FLASK_APP=weather_sample/main.py``
+* Run the command ``flask run``
+* In your browser or with curl/wget hit the endpoint ``http://127.0.0.1:5000/recommendations/{LATITUDE},{LONGITUDE}``
