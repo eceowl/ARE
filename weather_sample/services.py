@@ -31,7 +31,7 @@ class EventbriteService:
             params=params
         )
 
-        return response.json()
+        return response.json()['events']
 
 
 class NetflixRouletteService:

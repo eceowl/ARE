@@ -12,4 +12,4 @@ def run(latitude, longitude):
                               EventbriteService(),
                               NetflixRouletteService())
 
-    return jsonify(**recommender.get_recommendation(latitude, longitude))
+    return jsonify(recommender.get_recommendation(latitude, longitude).serialize())
