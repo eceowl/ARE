@@ -6,7 +6,7 @@ from flask import Flask, jsonify
 app = Flask(__name__)
 
 
-@app.route('/recommendation/<latitude>,<longitude>')
+@app.route('/recommendations/<latitude>,<longitude>')
 def run(latitude, longitude):
     recommender = Recommender(WeatherService(),
                               EventbriteService(),
