@@ -15,6 +15,15 @@ def index():
 @app.route('/recommendations/', methods=['POST'])
 def choice():
 
+    latitude = int(request.form['latitude'])
+    longitude = int(request.form['longitude'])
+
+    # This should return something prettier
+    if latitude < -90 or latitude > 90:
+        return "Invalid latitude range"
+    if longitude < -180 or longitude > 180:
+        return "Invalid longitude range"
+
     recommender = Recommender(WeatherService(),
                               EventbriteService(),
                               NetflixRouletteService())
