@@ -35,7 +35,8 @@ class Credentials:
 * Create a virtualenv and run ``pip install -r requirements.txt``
 * Set the FLASK_APP by running ``export FLASK_APP=weather_sample/main.py``
 * Run the command ``flask run``
-* In your browser or with curl/wget hit the endpoint ``http://127.0.0.1:5000/recommendations/{LATITUDE},{LONGITUDE}``
+* In your browser go to ``http://127.0.0.1:5000/``
+* Type in your latitude and longitude to get a recommendation
 
 
 
@@ -45,5 +46,4 @@ class Credentials:
     * Create a recommendation per time span (i.e. if it won't rain until 7:30 pm, make an outdoor recommendation for the hours preceding)
 * Better use weather for predictions
     * 95 degrees Fahrenheit might not feel as hot depending on the humidity, etc
-* Add UI to enter latitude and longitude
     
