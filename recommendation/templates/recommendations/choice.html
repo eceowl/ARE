@@ -1,0 +1,17 @@
+<h2>Activity Recommendation Engine</h2>
+
+<div>
+    {% if recommendation.recommendation_type == "Netflix" %}
+        <p>The weather tonight will be no good!</p>
+        <p>Here is a show to watch on Netflix: </p>
+    {% else %}
+        <p>It's beautiful outside!</p>
+        <p>Here's a free event in your area! {{recommendation.title}}</p>
+    {% endif %}
+
+    <p>Title: {{recommendation.title}}</p>
+    <p>Description: {% if recommendation.description == "" %} "N/A" {% else %} {{recommendation.description}} {% endif %} </p>
+    <p>More info: <a href={{recommendation.url}}> Here </a> </p>
+
+    <a href="{{ url_for('index') }}">Try again?</a>
+</div>

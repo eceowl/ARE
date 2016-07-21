@@ -1,5 +1,5 @@
 import requests
-from weather_sample.credentials import Credentials
+from recommendation.credentials import Credentials
 from datetime import timedelta, date, datetime
 
 

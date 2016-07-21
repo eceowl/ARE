@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
-from weather_sample.services import WeatherService, NetflixRouletteService, EventbriteService
-from weather_sample.recommender import Recommender
+from recommendation.services import WeatherService, NetflixRouletteService, EventbriteService
+from recommendation.recommender import Recommender
 
 
 class TestRecommender(unittest.TestCase):
@@ -44,15 +44,15 @@ class TestRecommender(unittest.TestCase):
             "data": [
                 {
                     "apparentTemperature": 75,
-                    "precipProbability": 1
+                    "precipProbability": 1.0
                 },
                 {
                     "apparentTemperature": 75,
-                    "precipProbability": 1
+                    "precipProbability": 1.0
                 },
                 {
                     "apparentTemperature": 75,
-                    "precipProbability": 1
+                    "precipProbability": 1.0
                 }
             ]
         }
@@ -103,7 +103,7 @@ class TestRecommender(unittest.TestCase):
         weather_mock = WeatherService()
         weather_mock.get_hourly_weather = MagicMock(return_value=mocked_weather_data)
 
-        # Will still return a netflix recommendation if there are no Events in the area
+        # Will still return a netflix recommendations if there are no Events in the area
         eventbrite_mock = EventbriteService()
         eventbrite_mock.get_events_around = MagicMock(return_value=mocked_event_data)
 
