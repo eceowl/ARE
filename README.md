@@ -47,3 +47,6 @@ class Credentials:
 * Better use weather for predictions
     * 95 degrees Fahrenheit might not feel as hot depending on the humidity, etc
     
+### Known Issues
+* Will round down remaining hours in weather
+* Only uses the number of hours remaining in the location that the application is run
