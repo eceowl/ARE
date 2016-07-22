@@ -12,8 +12,8 @@ class Recommender:
     def __is_stay_in_weather__(weather_by_hour):
         # Arbitrary number choices for now
         # TODO make this a little more advanced
-        return weather_by_hour['apparentTemperature'] < 30 or \
-               weather_by_hour['apparentTemperature'] > 95 or \
+        return weather_by_hour['temperature'] < 30 or \
+               weather_by_hour['temperature'] > 95 or \
                weather_by_hour['precipProbability'] > .7
 
     def __get_netflix_recommendation__(self):
