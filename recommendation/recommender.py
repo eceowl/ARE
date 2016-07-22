@@ -57,7 +57,7 @@ class Recommender:
         # TODO add more fine grained detail as to why recommendations was given
         # i.e. 'It's too hot outside!' or 'It's raining!'
 
-        if any(self.__is_stay_in_weather__(hour) for hour in hourly_weather['data']):
+        if any(self.__is_stay_in_weather__(hour) for hour in hourly_weather):
             return self.__get_netflix_recommendation__()
         else:
             return self.__get_eventbrite_recommendation__(latitude, longitude)
