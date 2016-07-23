@@ -10,12 +10,13 @@ class Recommender:
 
     @staticmethod
     def __is_stay_in_weather__(weather_by_hour):
+        # Prioritize rain over hot weather
+        if weather_by_hour['precipProbability'] > .7:
+            return Reason(True, "There's a good chance it might rain!")
         if weather_by_hour['temperature'] < 30:
             return Reason(True, "It's far too cold outside!")
         if weather_by_hour['temperature'] > 95:
             return Reason(True, "Whoa! It's really hot out there!")
-        if weather_by_hour['precipProbability'] > .7:
-            return Reason(True, "There's a good chance it might rain!")
 
         return Reason(False, "Its beautiful outside!")
 
