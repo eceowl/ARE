@@ -9,22 +9,21 @@ class TestRecommender(unittest.TestCase):
         TEST_LATITUDE = 30
         TEST_LONGITUDE = -70
 
-        mocked_weather_data = {
-            "data": [
+        mocked_weather_data = [
                 {
-                    "apparentTemperature": 30,
+                    "temperature": 30,
                     "precipProbability": 0
                 },
                 {
-                    "apparentTemperature": 40,
+                    "temperature": 40,
                     "precipProbability": 0
                 },
                 {
-                    "apparentTemperature": 50,
+                    "temperature": 50,
                     "precipProbability": 0
                 }
             ]
-        }
+
 
         weather_mock = WeatherService()
         weather_mock.get_hourly_weather = MagicMock(return_value=mocked_weather_data)
@@ -34,28 +33,27 @@ class TestRecommender(unittest.TestCase):
                                   NetflixRouletteService())
 
         recommendation = recommender.get_recommendation(TEST_LATITUDE, TEST_LONGITUDE)
-        self.assertEqual(recommendation.recommendation_type, "Netflix")
+        self.assertEqual(len(recommendation.choices), 1)
+        self.assertEqual(recommendation.choices[0].recommendation_type, "Netflix")
 
     def test_bad_precipitation(self):
         TEST_LATITUDE = 30
         TEST_LONGITUDE = -70
 
-        mocked_weather_data = {
-            "data": [
+        mocked_weather_data = [
                 {
-                    "apparentTemperature": 75,
+                    "temperature": 75,
                     "precipProbability": 1.0
                 },
                 {
-                    "apparentTemperature": 75,
+                    "temperature": 75,
                     "precipProbability": 1.0
                 },
                 {
-                    "apparentTemperature": 75,
+                    "temperature": 75,
                     "precipProbability": 1.0
                 }
             ]
-        }
 
         weather_mock = WeatherService()
         weather_mock.get_hourly_weather = MagicMock(return_value=mocked_weather_data)
@@ -65,28 +63,27 @@ class TestRecommender(unittest.TestCase):
                                   NetflixRouletteService())
 
         recommendation = recommender.get_recommendation(TEST_LATITUDE, TEST_LONGITUDE)
-        self.assertEqual(recommendation.recommendation_type, "Netflix")
+        self.assertEqual(len(recommendation.choices), 1)
+        self.assertEqual(recommendation.choices[0].recommendation_type, "Netflix")
 
     def test_good_temperature(self):
         TEST_LATITUDE = 30
         TEST_LONGITUDE = -70
 
-        mocked_weather_data = {
-            "data": [
+        mocked_weather_data = [
                 {
-                    "apparentTemperature": 80,
+                    "temperature": 80,
                     "precipProbability": .4
                 },
                 {
-                    "apparentTemperature": 80,
+                    "temperature": 80,
                     "precipProbability": .4
                 },
                 {
-                    "apparentTemperature": 80,
+                    "temperature": 80,
                     "precipProbability": .4
                 }
             ]
-        }
 
         mocked_event_data = [
             {
@@ -112,5 +109,5 @@ class TestRecommender(unittest.TestCase):
                                   NetflixRouletteService())
 
         recommendation = recommender.get_recommendation(TEST_LATITUDE, TEST_LONGITUDE)
-        print(recommendation)
-        self.assertEqual(recommendation.recommendation_type, "Eventbrite")
+        self.assertEqual(len(recommendation.choices), 1)
+        self.assertEqual(recommendation.choices[0].recommendation_type, "Eventbrite")
