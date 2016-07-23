@@ -1,6 +1,7 @@
 import requests
 from recommendation.credentials import Credentials
 from datetime import timedelta, date, datetime, time
+import pytz
 
 
 class EventbriteService:
@@ -84,11 +85,15 @@ class WeatherService:
     def get_hourly_weather(self, latitude, longitude):
         data = self.get_current_weather(latitude, longitude)
 
-        tomorrow = date.today() + timedelta(days=1)
+        timezone_name = data['timezone']
+        timezone = pytz.timezone(timezone_name)
+        print(timezone_name)
+
+        tomorrow = datetime.now().replace(hour=0, minute=0, second=0) + timedelta(days=1)
         midnight = datetime.combine(tomorrow, time())
 
         # For this to be accurate, you would need to look up the timezone of the longitude and latitude provided
         # Also this is gonna round down the number of hours left in the day, but this is okay because most likely
         # There won't be any events that start at midnight anyway
-        hours_left = (midnight - datetime.now()).seconds // 3600
+        hours_left = (midnight.replace(tzinfo=timezone).astimezone(timezone) - datetime.now(timezone)).seconds // 3600
         return data['hourly']['data'][0:hours_left]
