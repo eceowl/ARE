@@ -4,7 +4,9 @@ class Recommendation:
 
 
 class Choice:
-    def __init__(self, title, description, url, recommendation_type, reason):
+    def __init__(self, start_hour, end_hour, title, description, url,  recommendation_type, reason):
+        self.start_hour = start_hour
+        self.end_hour = end_hour
         self.reason = reason
         self.title = title
         self.description = description
@@ -13,6 +15,7 @@ class Choice:
 
 
 class Reason:
-    def __init__(self, is_stay_in_weather, reason):
+    def __init__(self, hour, is_stay_in_weather, reason):
+        self.hour = hour
         self.is_stay_in_weather = is_stay_in_weather
         self.reason = reason

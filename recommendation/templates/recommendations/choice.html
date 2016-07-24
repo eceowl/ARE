@@ -2,8 +2,9 @@
 
 <div>
     {% for choice in recommendation.choices %}
-
-        <p>{{ choice.reason }}</p>
+        <p>Date: {{ choice.start_hour.strftime("%A %B %d") }} </p>
+        <p>From {{ choice.start_hour.strftime("%-I:%M %p") }} to {{ choice.end_hour.strftime("%-I:%M %p") }}: </p>
+        <p>{{ choice.reason.reason }}</p>
         {% if choice.recommendation_type == "Netflix" %}
             <p>Here is a show to watch on Netflix: </p>
         {% else %}

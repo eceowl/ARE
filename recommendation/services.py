@@ -87,13 +87,18 @@ class WeatherService:
 
         timezone_name = data['timezone']
         timezone = pytz.timezone(timezone_name)
-        print(timezone_name)
 
-        tomorrow = datetime.now().replace(hour=0, minute=0, second=0) + timedelta(days=1)
+        tomorrow = datetime.now(timezone).replace(hour=0, minute=0, second=0) + timedelta(days=1)
         midnight = datetime.combine(tomorrow, time())
 
-        # For this to be accurate, you would need to look up the timezone of the longitude and latitude provided
-        # Also this is gonna round down the number of hours left in the day, but this is okay because most likely
-        # There won't be any events that start at midnight anyway
-        hours_left = (midnight.replace(tzinfo=timezone).astimezone(timezone) - datetime.now(timezone)).seconds // 3600
-        return data['hourly']['data'][0:hours_left]
+        difference = (midnight.replace(tzinfo=timezone).astimezone(timezone) - datetime.now(timezone))
+
+        hours_left = 24 if (difference.days == 1) else (midnight.replace(tzinfo=timezone).astimezone(
+            timezone) - datetime.now(timezone)).seconds // 3600
+
+        result = {
+            "timezone": timezone,
+            "data": data['hourly']['data'][0:hours_left]
+        }
+
+        return result
