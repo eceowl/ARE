@@ -1,0 +1,22 @@
+{
+  "name": "activity_recommendation_engine",
+  "version": "1.0.0",
+  "description": "Activity Recommendation Engine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eceowl/ARE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eceowl/ARE/issues"
+  },
+  "homepage": "https://github.com/eceowl/ARE#readme",
+  "devDependencies": {
+    "bower": "^1.7.9"
+  }
+}

@@ -102,9 +102,9 @@ class Recommender:
             start_hour = first_item.hour
             end_hour = last_item.hour
             if group[0].is_stay_in_weather:
-                choices.append(self.__get_netflix_choice__(start_hour, end_hour, first_item.reason))
+                choices.append(self.__get_netflix_choice__(start_hour, end_hour, first_item))
             else:
                 choices.append(
-                    self.__get_eventbrite_choice__(start_hour, end_hour, latitude, longitude, first_item.reason))
+                    self.__get_eventbrite_choice__(start_hour, end_hour, latitude, longitude, first_item))
 
         return Recommendation(choices)

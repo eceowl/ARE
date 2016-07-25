@@ -1,9 +1,12 @@
- <form action="{{ url_for('choice') }}" method=get>
-      <dl>
-        <dt>Latitude:
-        <dd><input type=text size=10 name=latitude>
-        <dt>Longitude:
-        <dd><input type=text name=longitude size=10>
-        <dd><input type=submit value="Get a Recommendation">
-      </dl>
+{% extends "base.html" %}
+{% block title %} Activity Recommendation Engine {% endblock %}
+{% block head %} {{ super() }}{% endblock %}
+{% block content %}
+ <form class="form-group" action="{{ url_for('choice') }}" method=get>
+      <label for="latitudeInput">Latitude</label>
+      <input type="text" class="form-control" name="latitude">
+      <label for="longitudeInput">Longitude</label>
+      <input type="text" class="form-control" name="longitude">
+      <input class="form-control btn btn-primary" type=submit value="Get a Recommendation">
 </form>
+{% endblock %}
