@@ -130,8 +130,8 @@ class TestRecommender(unittest.TestCase):
         self.assertEqual(len(recommendation.choices), 2)
         self.assertEqual(recommendation.choices[0].recommendation_type, "Eventbrite")
         self.assertEqual(recommendation.choices[1].recommendation_type, "Netflix")
-        self.assertEqual(recommendation.choices[0].reason, "Its beautiful outside!")
-        self.assertEqual(recommendation.choices[1].reason, "There's a good chance it might rain!")
+        self.assertEqual(recommendation.choices[0].reason.reason, "Its beautiful outside!")
+        self.assertEqual(recommendation.choices[1].reason.reason, "There's a good chance it might rain!")
 
     def test_good_then_hot(self):
         mocked_weather_data = {
@@ -169,8 +169,8 @@ class TestRecommender(unittest.TestCase):
         self.assertEqual(len(recommendation.choices), 2)
         self.assertEqual(recommendation.choices[0].recommendation_type, "Eventbrite")
         self.assertEqual(recommendation.choices[1].recommendation_type, "Netflix")
-        self.assertEqual(recommendation.choices[0].reason, "Its beautiful outside!")
-        self.assertEqual(recommendation.choices[1].reason, "Whoa! It's really hot out there!")
+        self.assertEqual(recommendation.choices[0].reason.reason, "Its beautiful outside!")
+        self.assertEqual(recommendation.choices[1].reason.reason, "Whoa! It's really hot out there!")
 
     def test_hot_then_good(self):
         mocked_weather_data = {
@@ -208,8 +208,8 @@ class TestRecommender(unittest.TestCase):
         self.assertEqual(len(recommendation.choices), 2)
         self.assertEqual(recommendation.choices[0].recommendation_type, "Netflix")
         self.assertEqual(recommendation.choices[1].recommendation_type, "Eventbrite")
-        self.assertEqual(recommendation.choices[0].reason, "Whoa! It's really hot out there!")
-        self.assertEqual(recommendation.choices[1].reason, "Its beautiful outside!")
+        self.assertEqual(recommendation.choices[0].reason.reason, "Whoa! It's really hot out there!")
+        self.assertEqual(recommendation.choices[1].reason.reason, "Its beautiful outside!")
 
     def test_rainy_then_good(self):
         mocked_weather_data = {
@@ -248,5 +248,5 @@ class TestRecommender(unittest.TestCase):
         self.assertEqual(len(recommendation.choices), 2)
         self.assertEqual(recommendation.choices[0].recommendation_type, "Netflix")
         self.assertEqual(recommendation.choices[1].recommendation_type, "Eventbrite")
-        self.assertEqual(recommendation.choices[0].reason, "There's a good chance it might rain!")
-        self.assertEqual(recommendation.choices[1].reason, "Its beautiful outside!")
+        self.assertEqual(recommendation.choices[0].reason.reason, "There's a good chance it might rain!")
+        self.assertEqual(recommendation.choices[1].reason.reason, "Its beautiful outside!")
