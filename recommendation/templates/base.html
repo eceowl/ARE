@@ -1,0 +1,23 @@
+<! DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='bower_components/bootstrap/dist/css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}"/>
+    <script src="{{ url_for('static', filename='bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.min.js') }}"></script>
+    <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+    <div id="content" class="container-fluid">
+    <div id="header"><h2>Activity Recommendation Engine</h2></div>
+        {% block content %}{% endblock %}
+    </div>
+    <div id="footer" class="container-fluid">
+        {% block footer %}
+        &copy; Copyright 2016 to <a href="https://github.com/eceowl/">David Soler</a>
+        {% endblock %}
+    </div>
+</body>
+</html>

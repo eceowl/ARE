@@ -1,20 +1,28 @@
-<h2>Activity Recommendation Engine</h2>
-
+{% extends "base.html" %}
+{% block title %} Activity Recommendation Engine {% endblock %}
+{% block head %} {{ super() }}{% endblock %}
+{% block content %}
 <div>
+    <h2>Recommended Activities for {{ recommendation.choices[0].start_hour.strftime("%A, %B%d") }} </h2>
+    <table class="table table-striped">
+        <tr>
+            <th>When</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Reason</th>
+        </tr>
     {% for choice in recommendation.choices %}
-        <p>Date: {{ choice.start_hour.strftime("%A %B %d") }} </p>
-        <p>From {{ choice.start_hour.strftime("%-I:%M %p") }} to {{ choice.end_hour.strftime("%-I:%M %p") }}: </p>
-        <p>{{ choice.reason.reason }}</p>
-        {% if choice.recommendation_type == "Netflix" %}
-            <p>Here is a show to watch on Netflix: </p>
-        {% else %}
-            <p>Here's a free event in your area!</p>
-        {% endif %}
-
-    <p>Title: {{choice.title}}</p>
-    <p>Description: {% if choice.description == "" %} "N/A" {% else %} {{choice.description}} {% endif %} </p>
-    <p>More info: <a href={{choice.url}}> Here </a> </p>
+        <tr>
+            <td>{{ choice.start_hour.strftime("%-I:%M %p") }} to {{ choice.end_hour.strftime("%-I:%M %p") }}</td>
+            <td><a href={{choice.url}}>{{choice.title}}</a></td>
+            <td>{% if choice.description == "" %} "N/A" {% else %} {{choice.description}} {% endif %} </td>
+            <td> {{ choice.recommendation_type }}</td>
+            <td> {{ choice.reason.reason }}</td>
+        </tr>
     {% endfor %}
+    </table>
 
-    <a href="{{ url_for('index') }}">Try again?</a>
+    <a class="btn btn-primary" role="button" href="{{ url_for('index') }}">Try again?</a>
 </div>
+{% endblock %}

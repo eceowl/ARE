@@ -1,0 +1,20 @@
+{
+  "name": "ARE",
+  "homepage": "https://github.com/eceowl/ARE",
+  "authors": [
+    "David Soler <davesolers@gmail.com>"
+  ],
+  "description": "Activity Recommendation Engine",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
