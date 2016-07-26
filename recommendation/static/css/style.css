@@ -1,0 +1,15 @@
+#header {
+    padding-bottom: 30px;
+}
+
+#content {
+    padding: 0 10% 0 10%;
+}
+
+#footer {
+    padding: 0 10% 0 10%;
+}
+
+.form-group>input {
+    margin-bottom: 2%;
+}

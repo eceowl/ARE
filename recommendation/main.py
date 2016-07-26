@@ -19,14 +19,17 @@ def index():
 
 @app.route('/recommendations/', methods=['GET'])
 def choice():
-    latitude = float(request.args.get('latitude'))
-    longitude = float(request.args.get('longitude'))
+    try:
+        latitude = float(request.args.get('latitude'))
+        longitude = float(request.args.get('longitude'))
+    except ValueError:
+        return render_template("error.html", message="Invalid latitude and/or longitude values, must be numbers.")
 
     # This should return something prettier
     if latitude < -90 or latitude > 90:
-        return "Invalid latitude range"
+        return render_template("error.html", message="Invalid latitude range must be between -90 and 90")
     if longitude < -180 or longitude > 180:
-        return "Invalid longitude range"
+        return render_template("error.html", message="Invalid longitude range must be between -180 and 180")
 
     return render_template("recommendations/choice.html",
                            recommendation=recommender.get_recommendation(latitude, longitude))

@@ -3,26 +3,25 @@
 {% block head %} {{ super() }}{% endblock %}
 {% block content %}
 <div>
-        <p>Date: {{ recommendation.choices[0].start_hour.strftime("%A %B %d") }} </p>
-    {% for choice in recommendation.choices %}
-    <h3>From {{ choice.start_hour.strftime("%-I:%M %p") }} to {{ choice.end_hour.strftime("%-I:%M %p") }}</h3>
-    <p>{{ choice.reason.reason }}</p>
-    {% if choice.recommendation_type == "Netflix" %}
-        <p>Here is a show to watch on Netflix: </p>
-    {% else %}
-        <p>Here's a free event in your area!</p>
-    {% endif %}
+    <h2>Recommended Activities for {{ recommendation.choices[0].start_hour.strftime("%A, %B%d") }} </h2>
     <table class="table table-striped">
         <tr>
+            <th>When</th>
             <th>Title</th>
             <th>Description</th>
+            <th>Type</th>
+            <th>Reason</th>
         </tr>
+    {% for choice in recommendation.choices %}
         <tr>
+            <td>{{ choice.start_hour.strftime("%-I:%M %p") }} to {{ choice.end_hour.strftime("%-I:%M %p") }}</td>
             <td><a href={{choice.url}}>{{choice.title}}</a></td>
             <td>{% if choice.description == "" %} "N/A" {% else %} {{choice.description}} {% endif %} </td>
+            <td> {{ choice.recommendation_type }}</td>
+            <td> {{ choice.reason.reason }}</td>
         </tr>
-    </table>
     {% endfor %}
+    </table>
 
     <a class="btn btn-primary" role="button" href="{{ url_for('index') }}">Try again?</a>
 </div>
