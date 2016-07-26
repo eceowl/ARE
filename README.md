@@ -37,16 +37,10 @@ class Credentials:
 * Run the command ``flask run``
 * In your browser go to ``http://127.0.0.1:5000/``
 * Type in your latitude and longitude to get a recommendation
-
+* run npm install
+* run bower install
 
 
 ### Rooms for Improvement
- 
-* Create more fine grained recommendations
-    * Create a recommendation per time span (i.e. if it won't rain until 7:30 pm, make an outdoor recommendation for the hours preceding)
 * Better use weather for predictions
     * 95 degrees Fahrenheit might not feel as hot depending on the humidity, etc
-    
-### Known Issues
-* Will round down remaining hours in weather
-* Only uses the number of hours remaining in the location that the application is run
