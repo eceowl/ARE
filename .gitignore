@@ -94,5 +94,8 @@ ENV/
 # npm files
 node_modules/
 
+# bower files
+bower_components/
+
 # IDEA 
 .idea/
