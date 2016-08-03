@@ -21,7 +21,7 @@ Using the supplied Latitude and Longitude, the hourly weather is retrieved using
     * (https://api.guidebox.com/)
   * Eventbrite API
     * (http://developer.eventbrite.com/)
-* Create credentials.py in /recommendation directory as follows:
+* Create credentials.py in base directory as follows:
 
 ```python
 class Credentials:
