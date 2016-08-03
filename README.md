@@ -44,3 +44,7 @@ class Credentials:
 ### Rooms for Improvement
 * Better use weather for predictions
     * 95 degrees Fahrenheit might not feel as hot depending on the humidity, etc
+
+
+### Known Issues
+* Datetime formatting does not currently work on windows machines.
