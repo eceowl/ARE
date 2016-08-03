@@ -91,5 +91,8 @@ ENV/
 # Rope project settings
 .ropeproject
 
+# npm files
+node_modules/
+
 # IDEA 
 .idea/
