@@ -1,7 +1,9 @@
-import requests
-from recommendation.credentials import Credentials
 from datetime import timedelta, date, datetime, time
+
 import pytz
+import requests
+
+from credentials import Credentials
 
 
 class EventbriteService:
