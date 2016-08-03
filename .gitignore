@@ -7,7 +7,7 @@ __pycache__/
 *.so
 
 # Credential Files
-weather_sample/credentials.py
+credentials.py
 
 # Distribution / packaging
 .Python
